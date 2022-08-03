@@ -24,3 +24,25 @@ h1 {
 a {
     text-decoration: none;
 }
+
+#favicon {
+    margin-left: 10px;
+}
+
+/**********************/
+/** version < 991px ***/
+/**********************/
+@media screen and (max-width: 991px) {
+    .dropdown-menu.show {
+        margin-left: -110px;
+    }
+}
+
+/**********************/
+/** version < 500px ***/
+/**********************/
+@media screen and (max-width: 500px) {
+    h1 {
+        display: none;
+    }
+}

@@ -1,5 +1,5 @@
 <section class="container mt-5">
-    <h2 class="text-center"><a href="./?ind=conc"><img alt="ajouter un nouveau contenu" title="ajouter un nouveau contenu" class="img_add_contenu" src="./img/ajouter-contenu.svg" alt="ajouter uncontenu" /></a>Concours</h2>
+    <h2 class="text-center"><a href="./?ind=conc"><img alt="ajouter un nouveau contenu" title="ajouter un nouveau contenu" class="img_add_contenu" src="./img/ajouter-contenu.svg" /></a>Concours</h2>
 </section>
 <section class="container mt-5">
     <form class="text-center">
@@ -37,11 +37,11 @@
           <label for="controlTextareaDescription" class="form-label">Description</label>
           <textarea class="form-control" id="controlTextareaDescription" rows="3"></textarea>
         </div>
+        <div class="d-flex justify-content-center">
+            <button id="valider" type="button" class="btn btn-dark m-1">Valider</button>
+            <button id="annuler" type="button" class="btn btn-dark m-1">Annuler</button>
+        </div>
     </form>
-    <div class="d-flex justify-content-center">
-        <button id="valider" type="button" class="btn btn-dark m-1">Valider</button>
-        <button id="annuler" type="button" class="btn btn-dark m-1">Annuler</button>
-    </div>
 </section>
 <section class="container mt-5">
     <table class="table table-dark table-striped">
@@ -50,10 +50,10 @@
             <th scope="col">Nom</th>
             <th scope="col">Début</th>
             <th scope="col">Fin</th>
-            <th scope="col">
+            <th scope="col" class="col-md-1">
               <img src="./img/icons8-modifier.svg" alt="modifier" />
             </th>
-            <th scope="col">
+            <th scope="col" class="col-md-1">
               <img src="./img/poubelle.svg" alt="supprimer" />
             </th>
           </tr>

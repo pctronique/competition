@@ -8,6 +8,8 @@ function findLogin(speudo) {
 }
 
 function validationInscription(e) {
+    // pour ne pas prendre l'adresse de l'action du formulaire.
+    e.preventDefault();
     let speudo = document.getElementById('floatingInputLogin').value;
     let pass = document.getElementById('floatingPassword').value;
     let passRepeat = document.getElementById('floatingPasswordRepeat').value;
@@ -55,7 +57,7 @@ function activeBtInscription() {
 
 function inscription() {
     fetch_txt('./templates/inscription.html').then(function(response) {
-        document.getElementById("def_body").innerHTML += response;
+        document.getElementById("def_body").innerHTML = response;
         activeBtInscription();
     });
 }

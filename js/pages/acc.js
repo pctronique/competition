@@ -13,7 +13,8 @@ function displayCard(game) {
 function displayAllCard() {
     let sectionCard = document.getElementById('list-concours');
     sectionCard.innerHTML = "";
-    gameTab.forEach(element => {
+    let tabReverse = gameTab.reverse();
+    tabReverse.forEach(element => {
         sectionCard.innerHTML += displayCard(element);
     });
 }
@@ -27,7 +28,7 @@ function activeBtAcc() {
 
 function acc() {
     fetch_txt('./templates/acc.html').then(function(response) {
-        document.getElementById("def_body").innerHTML += response;
+        document.getElementById("def_body").innerHTML = response;
         activeBtAcc();
         displayAllCard();
     });

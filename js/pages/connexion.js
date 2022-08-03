@@ -1,4 +1,6 @@
-function validationConnexion() {
+function validationConnexion(e) {
+    // pour ne pas prendre l'adresse de l'action du formulaire.
+    e.preventDefault();
     let speudo = document.getElementById('floatingInputLogin').value;
     let pass = document.getElementById('floatingPassword').value;
     let theFindLogin = findLogin(speudo);
@@ -36,7 +38,7 @@ function activeBtConnexion() {
 
 function connexion() {
     fetch_txt('./templates/connexion.html').then(function(response) {
-        document.getElementById("def_body").innerHTML += response;
+        document.getElementById("def_body").innerHTML = response;
         activeBtConnexion();
     });
 }

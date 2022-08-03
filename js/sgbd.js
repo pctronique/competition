@@ -208,9 +208,7 @@ function saveFileSGBD() {
 }
 
 function loadJSON_SGBD(jsonData) {
-    console.log(jsonData);
     var result = JSON.parse(jsonData);
-    console.log(result.utilisateurTab);
     //roleAutoIncrement = result.roleAutoIncrement;
     utilisateurAutoIncrement = result.utilisateurAutoIncrement;
     gameAutoIncrement = result.gameAutoIncrement;

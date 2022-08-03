@@ -29,8 +29,12 @@ function activeBtSGBD() {
 }
 
 function sgbd_recup() {
-    fetch_txt('./templates/sgbd.html').then(function(response) {
-        document.getElementById("def_body").innerHTML += response;
-        activeBtSGBD();
-    });
+    if("id" in sessionTab) {
+        fetch_txt('./templates/sgbd.html').then(function(response) {
+            document.getElementById("def_body").innerHTML = response;
+            activeBtSGBD();
+        });
+    } else {
+        window.location.href = './../?ind=conn';
+    }
 }
