@@ -9,6 +9,8 @@ if(indexPg != undefined && indexPg.trim() != "") {
         user();
     } else if(indexPg == "users") {
         users();
+    } else if(indexPg == "sgbd") {
+        sgbd_recup();
     } else {
         acc();
     }

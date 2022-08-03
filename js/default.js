@@ -8,7 +8,10 @@ if(indexPg != undefined && indexPg.trim() != "") {
         connexion();
     } else if(indexPg == "decon") {
         deconnexion();
-    } else  {
+    } else if(indexPg == "info") {
+        menu();
+        information();
+    } else {
         menu();
         acc();
     }

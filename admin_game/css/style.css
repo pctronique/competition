@@ -18,3 +18,16 @@ h1 {
 a {
     text-decoration: none;
 }
+
+label {
+    text-align: left;
+}
+
+#add-img {
+    width: 200px;
+    height: 200px;
+}
+
+table img {
+    filter: invert(1);
+}

@@ -54,7 +54,7 @@ function activeBtInscription() {
 }
 
 function inscription() {
-    fetch_txt('./pages/inscription.html').then(function(response) {
+    fetch_txt('./templates/inscription.html').then(function(response) {
         document.getElementById("def_body").innerHTML += response;
         activeBtInscription();
     });

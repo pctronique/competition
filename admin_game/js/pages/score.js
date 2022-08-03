@@ -1,5 +1,5 @@
 function score() {
-    fetch_txt('./pages/score.html').then(function(response) {
+    fetch_txt('./templates/score.html').then(function(response) {
         document.getElementById("def_body").innerHTML += response;
     });
 }

@@ -27,12 +27,14 @@ function utilisateur(id, speudo, pass, roleId) {
     };
 }
 
-function game(id, name, image, date, description, userId) {
+function game(id, name, image, date, dateStart, dateEnd, description, userId) {
     return {
         "id" : id,
         "name" : name,
         "image" : image,
         "date" : date,
+        "dateStart" : dateStart,
+        "dateEnd" : dateEnd,
         "description" : description,
         "userId" : userId,
     };
@@ -88,14 +90,14 @@ function addUser(speudo, pass, roleId) {
     return userTableOne;
 }
 
-function addGame(speudo, image, date, description, userId) {
+function addGame(name, image, date, dateStart, dateEnd, description, userId) {
     let idTab = gameIdDef;
     if(gameIdDef == -1) {
         idTab = gameAutoIncrement;
         gameAutoIncrement++;
     }
     let idIndex = recupId(gameTab, idTab);
-    let gameTableOne = game(idTab, speudo, image, date, description, userId);
+    let gameTableOne = game(idTab, name, image, date, dateStart, dateEnd, description, userId);
     if(idIndex == -1) {
         gameTab.push(gameTableOne);
     } else {
@@ -104,7 +106,7 @@ function addGame(speudo, image, date, description, userId) {
     return gameTableOne;
 }
 
-function addGame(gameId, userId, score) {
+function addGameUser(gameId, userId, score) {
     let idTab = gameUserIdDef;
     if(gameUserIdDef == -1) {
         idTab = gameUserAutoIncrement;
@@ -206,7 +208,9 @@ function saveFileSGBD() {
 }
 
 function loadJSON_SGBD(jsonData) {
+    console.log(jsonData);
     var result = JSON.parse(jsonData);
+    console.log(result.utilisateurTab);
     //roleAutoIncrement = result.roleAutoIncrement;
     utilisateurAutoIncrement = result.utilisateurAutoIncrement;
     gameAutoIncrement = result.gameAutoIncrement;
@@ -215,6 +219,8 @@ function loadJSON_SGBD(jsonData) {
     utilisateurTab = result.utilisateurTab;
     gameTab = result.gameTab;
     gameUserTab = result.gameUserTab;
+    
+    saveLocalSGBD();
 }
 
 function addDefRole() {

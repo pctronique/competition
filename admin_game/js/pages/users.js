@@ -1,5 +1,5 @@
 function users() {
-    fetch_txt('./pages/users.html').then(function(response) {
+    fetch_txt('./templates/users.html').then(function(response) {
         document.getElementById("def_body").innerHTML += response;
     });
 }

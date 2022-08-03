@@ -35,7 +35,7 @@ function activeBtConnexion() {
 }
 
 function connexion() {
-    fetch_txt('./pages/connexion.html').then(function(response) {
+    fetch_txt('./templates/connexion.html').then(function(response) {
         document.getElementById("def_body").innerHTML += response;
         activeBtConnexion();
     });

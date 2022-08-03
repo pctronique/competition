@@ -1,3 +1,6 @@
+let fileImgAdd = undefined;
+let imgSrc = "";
+
 /*
 Recuperation d'une image pour l'afficher sur le html
 event (event) : evenement d'ecoute
@@ -21,14 +24,17 @@ function loadFilesImg(event) {
 
         // on vide l'image par defaut et on ajoute le fichier
         preview.src = "";
-        preview.file = file;
+        //preview.file = file;
+        //fileImgAdd = file;
 
         // ici on affiche l'image sur la page html (ne surtout pas le supprimer).
         var reader = new FileReader();
         reader.onload = (function(aImg) {
             return function(e) { 
                 aImg.src = e.target.result;
-                };
+                imgSrc = reader.result;
+                preview.src = imgSrc;
+            };
         })(preview);
         reader.readAsDataURL(file);
     }
