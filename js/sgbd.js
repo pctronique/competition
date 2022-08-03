@@ -18,24 +18,23 @@ function role(id, name) {
     };
 }
 
-function utilisateur(id, speudo, email, passe, roleId) {
+function utilisateur(id, speudo, pass, roleId) {
     return {
         "id" : id,
         "speudo" : speudo,
-        "email" : email,
-        "passe" : passe,
+        "pass" : pass,
         "roleId" : roleId,
     };
 }
 
-function game(id, speudo, image, date, userId, description) {
+function game(id, name, image, date, description, userId) {
     return {
         "id" : id,
-        "speudo" : speudo,
+        "name" : name,
         "image" : image,
         "date" : date,
-        "userId" : userId,
         "description" : description,
+        "userId" : userId,
     };
 }
 
@@ -64,39 +63,45 @@ function addRole(name) {
         roleAutoIncrement++;
     }
     let idIndex = recupId(roleTab, idTab);
+    let roleTableOne = role(idTab, name);
     if(idIndex == -1) {
-        roleTab.push(role(idTab, name));
+        roleTab.push(roleTableOne);
     } else {
-        roleTab[idIndex] = role(idTab, name);
+        roleTab[idIndex] = roleTableOne;
     }
+    return roleTableOne;
 }
 
-function addUser(speudo, email, passe, roleId) {
+function addUser(speudo, pass, roleId) {
     let idTab = utilisateurIdDef;
     if(utilisateurIdDef == -1) {
         idTab = utilisateurAutoIncrement;
         utilisateurAutoIncrement++;
     }
     let idIndex = recupId(utilisateurTab, idTab);
+    let userTableOne = utilisateur(idTab, speudo, pass, roleId);
     if(idIndex == -1) {
-        utilisateurTab.push(utilisateur(idTab, speudo, email, passe, roleId));
+        utilisateurTab.push(userTableOne);
     } else {
-        utilisateurTab[idIndex] = utilisateur(idTab, speudo, email, passe, roleId);
+        utilisateurTab[idIndex] = userTableOne;
     }
+    return userTableOne;
 }
 
-function addGame(speudo, image, date, userId, description) {
+function addGame(speudo, image, date, description, userId) {
     let idTab = gameIdDef;
     if(gameIdDef == -1) {
         idTab = gameAutoIncrement;
         gameAutoIncrement++;
     }
     let idIndex = recupId(gameTab, idTab);
+    let gameTableOne = game(idTab, speudo, image, date, description, userId);
     if(idIndex == -1) {
-        gameTab.push(game(idTab, speudo, image, date, userId, description));
+        gameTab.push(gameTableOne);
     } else {
-        gameTab[idIndex] = game(idTab, speudo, image, date, userId, description);
+        gameTab[idIndex] = gameTableOne;
     }
+    return gameTableOne;
 }
 
 function addGame(gameId, userId, score) {
@@ -106,11 +111,13 @@ function addGame(gameId, userId, score) {
         gameUserAutoIncrement++;
     }
     let idIndex = recupId(gameUserTab, idTab);
+    let gameUserTableOne = gameUser(gameId, userId, score);
     if(idIndex == -1) {
-        gameUserTab.push(gameUser(gameId, userId, score));
+        gameUserTab.push(gameUserTableOne);
     } else {
-        gameUserTab[idIndex] = gameUser(gameId, userId, score);
+        gameUserTab[idIndex] = gameUserTableOne;
     }
+    return gameUserTableOne;
 }
 
 function saveLocalSGBD() {
@@ -118,8 +125,8 @@ function saveLocalSGBD() {
         "number" : roleAutoIncrement,
         "listData" : roleTab,
 
-    }*/
-    localStorage.setItem('pctr_comp_role', JSON.stringify(valuesRole));
+    }
+    localStorage.setItem('pctr_comp_role', JSON.stringify(valuesRole));*/
     let valuesUser = {
         "number" : utilisateurAutoIncrement,
         "listData" : utilisateurTab,
@@ -157,7 +164,7 @@ function loadLocalSGBD() {
             utilisateurTab = values.listData;
         }
     }
-    var valuesGame = localStorage.getItem('pctr_comp_user');
+    var valuesGame = localStorage.getItem('pctr_comp_game');
     if(valuesGame !== undefined && valuesGame != "") {
         let values = JSON.parse(valuesGame);
         if(values != undefined && values != "") {
@@ -165,7 +172,7 @@ function loadLocalSGBD() {
             gameTab = values.listData;
         }
     }
-    var valuesGameUser = localStorage.getItem('pctr_comp_user');
+    var valuesGameUser = localStorage.getItem('pctr_comp_game_user');
     if(valuesGameUser !== undefined && valuesGameUser != "") {
         let values = JSON.parse(valuesGameUser);
         if(values != undefined && values != "") {
@@ -216,7 +223,4 @@ function addDefRole() {
 }
 
 addDefRole();
-console.log(roleTab);
-console.log(utilisateurTab);
-console.log(gameTab);
-console.log(gameUserTab);
+loadLocalSGBD();

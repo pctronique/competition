@@ -1,11 +1,48 @@
+function findLogin(speudo) {
+    for (let index = 0; index < utilisateurTab.length; index++) {
+        if(utilisateurTab[index].speudo == speudo) {
+            return index
+        }
+    }
+    return -1;
+}
+
 function validationInscription(e) {
     let speudo = document.getElementById('floatingInputLogin').value;
     let pass = document.getElementById('floatingPassword').value;
     let passRepeat = document.getElementById('floatingPasswordRepeat').value;
-    if(speudo != "" && pass != "" && passRepeat != "" ) {
+    let theFindLogin = findLogin(speudo);
+    if(speudo == "" || theFindLogin > -1) {
+
+    }
+    if(pass == "") {
+        
+    }
+    if(passRepeat == "") {
+        
+    }
+    if(speudo != "" && pass != "" && passRepeat != "" && theFindLogin == -1) {
         if(pass == passRepeat) {
-            
+            sha256(pass).then(function(response) {
+                let utilisateur = undefined;
+                if(utilisateurAutoIncrement == 1) {
+                    utilisateur = addUser(speudo, response, 2);
+                } else {
+                    utilisateur = addUser(speudo, response, 1);
+                }
+                saveLocalSGBD();
+                userSession(utilisateur);
+                window.location.href = './admin_game';
+            });
+        } else {
+            alert("Les mots de passe ne sont pas identiques.");
         }
+    } else if(speudo == "") {
+        alert("Le login ne peu pas être vide.");
+    } else if(pass == "" || passRepeat == "") {
+        alert("Le mot de passe ne peu pas être vide.");
+    } else if(theFindLogin > -1) {
+        alert("Le login est déjà utilisé, merci d'en choisir un autre.");
     }
 }
 

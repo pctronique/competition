@@ -1,22 +1,25 @@
 <section class="container mt-5">
-    <div class="form-floating mb-3">
-      <input
-        type="text"
-        class="form-control"
-        id="floatingInputLogin"
-        placeholder="login"
-      />
-      <label for="floatingInputLogin">Login</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input
-        type="password"
-        class="form-control"
-        id="floatingPassword"
-        placeholder="Password"
-      />
-      <label for="floatingPassword">Password</label>
-    </div>
+    <form>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingInputLogin"
+          placeholder="login"
+        />
+        <label for="floatingInputLogin">Login</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+          autocomplete
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+    </form>
     <div class="d-flex justify-content-center">
       <button id="valider" type="button" class="btn btn-dark m-1">Valider</button>
       <button id="annuler" type="button" class="btn btn-dark m-1">Annuler</button>

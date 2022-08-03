@@ -1,3 +1,17 @@
+body:before {
+    content: "";
+    position: absolute;
+    background: url("../img/fond_game_1.svg") repeat;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    position: relative;
+    min-width: 300px;
+}
+
+
 #img-menu {
     filter: invert(1);
 }
