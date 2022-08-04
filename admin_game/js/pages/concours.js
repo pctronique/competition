@@ -155,7 +155,7 @@ function addEventAllConcours() {
 
 function loadlistConcours() {
   document.getElementById("list_competition").innerHTML = "";
-  let tabReverse = gameTab.reverse();
+  let tabReverse = reverseTab(gameTab);
   if (tabReverse.length > 0) {
     tabReverse.forEach((element) => {
       document.getElementById("list_competition").innerHTML += addRowConcours(

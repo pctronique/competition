@@ -67,6 +67,10 @@ table select {
   display: none;
 }
 
+.img-validate {
+  filter: none;
+}
+
 /**********************/
 /** version < 991px ***/
 /**********************/

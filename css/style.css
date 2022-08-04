@@ -11,6 +11,11 @@ body {
   min-width: 300px;
 }
 
+.def_body {
+  position: relative;
+  z-index: 2;
+}
+
 #img-menu {
   filter: invert(1);
 }

@@ -31,7 +31,7 @@ function displayCard(game) {
 function displayAllCard() {
   let sectionCard = document.getElementById("list-concours");
   sectionCard.innerHTML = "";
-  let tabReverse = gameTab.reverse();
+  let tabReverse = reverseTab(gameTab);
   tabReverse.forEach((element) => {
     sectionCard.innerHTML += displayCard(element);
   });

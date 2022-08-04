@@ -36,7 +36,7 @@ function addRowUsers(user) {
 
 function loadlistUsers() {
   document.getElementById("list_users").innerHTML = "";
-  let tabReverse = utilisateurTab.reverse();
+  let tabReverse = reverseTab(utilisateurTab);
   if (tabReverse.length - 1 > 0) {
     tabReverse.forEach((element) => {
       if (element.id != sessionTab.id) {

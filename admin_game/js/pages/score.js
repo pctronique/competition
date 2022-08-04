@@ -1,6 +1,5 @@
 function findGameAndUser(idGame) {
   for (let index = 0; index < gameUserTab.length; index++) {
-    console.log(idGame+' == '+gameUserTab[index].gameId+' && '+sessionTab.id+' == '+gameUserTab[index].userId);
     if (idGame == gameUserTab[index].gameId && sessionTab.id == gameUserTab[index].userId) {
       return false;
     }
@@ -26,18 +25,47 @@ function loadlistSelectScore() {
   }
 }
 
+function addRowUserGame(gameUser) {
+  let myIndex = recupId(gameTab, gameUser.gameId);
+  let game = gameTab[myIndex];
+  let imgValidate = "./img/icons8-red-square-96.svg";
+  let altValidate = "Il n'est plus valide.";
+  if(dateToInt(dateNowStr(dateNowStr())) >= dateToInt(game.dateStart) && dateToInt(dateNowStr()) < dateToInt(game.dateEnd)) {
+    imgValidate = "./img/icons8-green-square-96.svg";
+    altValidate = "Il est valide.";
+  }
+  return (
+    '<tr id="concours_' +
+    gameUser.id +
+    '">' +
+    "<td>" +
+    '<img class="img-validate" src="'+imgValidate+'" alt="'+altValidate+'" />' +
+    "</td>" +
+    "<td>" +
+    game.name +
+    "</td>" +
+    "<td>" +
+    gameUser.score +
+    "</td>" +
+    '<td><img src="./img/poubelle.svg" class="delete" alt="supprimer" /></th>' +
+    "</tr>"
+  );
+}
+
 function loadlistScore() {
-  document.getElementById("list_competition").innerHTML = "";
-  let tabReverse = gameUserTab.reverse();
+  document.getElementById("list_score").innerHTML = "";
+  let tabReverse = reverseTab(gameUserTab);
   if (tabReverse.length > 0) {
     tabReverse.forEach((element) => {
-      document.getElementById("list_competition").innerHTML += addRowConcours(
-        element
-      );
+      if(element.userId == sessionTab.id) {
+        document.getElementById("list_score").innerHTML += addRowUserGame(
+          element
+        );
+      }
     });
   } else {
-    document.getElementById("list_competition").innerHTML =
-      "<tr>" + '<td colspan="5">Il n\'y a pas de catégorie.</td>' + "</tr>";
+    document.getElementById("list_score").innerHTML =
+      "<tr>" + '<td colspan="4">Il n\'y a pas de catégorie.</td>' + "</tr>";
   }
 }
 
@@ -61,6 +89,7 @@ function score() {
     fetch_txt("./templates/score.html").then(function (response) {
       document.getElementById("def_body").innerHTML = response;
       loadlistSelectScore();
+      loadlistScore();
       addEventAllScore();
     });
   } else {

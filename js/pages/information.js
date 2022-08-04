@@ -1,3 +1,39 @@
+function addRowUserGameInfo(gameUser) {
+  console.log(gameUser.userId);
+  let myIndex = recupId(utilisateurTab, gameUser.userId);
+  let user = utilisateurTab[myIndex];
+  return (
+    '<tr id="concours_' +
+    gameUser.id +
+    '">' +
+    "<td>" +
+    gameUser.score +
+    "</td>" +
+    "<td>" +
+    user.speudo +
+    "</td>" +
+    "</tr>"
+  );
+}
+
+function loadlistScoreInfo(id) {
+  document.getElementById("list_score_game").innerHTML = "";
+  let tabReverse = reverseTab(gameUserTab);
+  if (tabReverse.length > 0) {
+    tabReverse.forEach((element) => {
+      if(element.gameId == id) {
+        document.getElementById("list_score_game").innerHTML += addRowUserGameInfo(
+          element
+        );
+      }
+    });
+  } else {
+    document.getElementById("list_score_game").innerHTML =
+      "<tr>" + '<td colspan="2">Il n\'y a pas de catégorie.</td>' + "</tr>";
+  }
+}
+
+
 function information() {
   let indexPg = urlGetName("id");
   if (indexPg == undefined) {
@@ -24,6 +60,7 @@ function information() {
       document.getElementById("score-game-dateEnd").innerHTML = displayDate(
         gameTab[myIndex].dateEnd
       );
+      loadlistScoreInfo(indexPg);
     });
   } else {
     document.getElementById("def_body").innerHTML =
