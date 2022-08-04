@@ -1,38 +1,69 @@
 <header class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <nav class="navbar-brand icon-site">
-      <img
-        id="favicon"
-        src="./../favicon.ico"
-        width="60"
-        height="60"
-        class="d-inline-block align-top"
-        alt=""
-      />
-    </nav>
-    <a
-      class="mx-auto"
-      href="./"
-      ><h1>Admin Compétiton Game</h1></a
+  <nav class="navbar-brand icon-site">
+    <img
+      id="favicon"
+      src="./../favicon.ico"
+      width="60"
+      height="60"
+      class="d-inline-block align-top"
+      alt=""
+    />
+  </nav>
+  <a class="mx-auto" href="./"><h1>Admin Compétiton Game</h1></a>
+  <div class="dropdown d-flex">
+    <button
+      class="btn btn-dark"
+      type="button"
+      id="navbarDarkDropdownMenuLink"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
     >
-    <div class="dropdown d-flex">
-      <button
-        class="btn btn-dark"
-        type="button"
-        id="navbarDarkDropdownMenuLink"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        <img src="./../img/burger_icon.svg" id="img-menu" alt="menu" />
-      </button>
-      <ul class="dropdown-menu  dropdown-menu-lg-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-        <li><a class="dropdown-item" href="./">Accueil</a></li>
-        <li><a class="dropdown-item" href="./../">Site</a></li>
-        <li><a class="dropdown-item" href="./?ind=score">Mon score</a></li>
-        <li><a class="dropdown-item for-admin" href="./?ind=conc">Concours</a></li>
-        <li><a class="dropdown-item" href="./?ind=user">Utilisateur</a></li>
-        <li><a class="dropdown-item for-admin" href="./?ind=users">Utilisateurs</a></li>
-        <li><a class="dropdown-item for-admin" href="./?ind=sgbd">SGBD</a></li>
-        <li><a class="dropdown-item" href="./../?ind=decon">Déconnexion</a></li>
-      </ul>
-    </div>
-  </header>
+      <img src="./../img/burger_icon.svg" id="img-menu" alt="menu" />
+    </button>
+    <ul
+      class="dropdown-menu dropdown-menu-lg-end dropdown-menu-dark"
+      aria-labelledby="navbarDarkDropdownMenuLink"
+    >
+      <li>
+        <a class="dropdown-item" href="./"
+          ><i class="bi bi-house-fill"></i>Accueil</a
+        >
+      </li>
+      <li>
+        <a class="dropdown-item" href="./../"
+          ><i class="bi bi-globe"></i>Site</a
+        >
+      </li>
+      <li>
+        <a class="dropdown-item" href="./?ind=score"
+          ><i class="bi bi-bar-chart-fill"></i>Mon score</a
+        >
+      </li>
+      <li>
+        <a class="dropdown-item for-admin" href="./?ind=conc"
+          ><i class="bi bi-dpad-fill"></i>Concours</a
+        >
+      </li>
+      <li>
+        <a class="dropdown-item" href="./?ind=user"
+          ><i class="bi bi-person-fill"></i>Utilisateur</a
+        >
+      </li>
+      <li>
+        <a class="dropdown-item for-admin" href="./?ind=users"
+          ><i class="bi bi-people-fill"></i>Utilisateurs</a
+        >
+      </li>
+      <li>
+        <a class="dropdown-item for-admin" href="./?ind=sgbd"
+          ><i class="bi bi-hdd-stack-fill"></i>SGBD</a
+        >
+      </li>
+      <li>
+        <a class="dropdown-item" href="./../?ind=decon"
+          ><i class="bi bi-unlock-fill"></i>Déconnexion</a
+        >
+      </li>
+    </ul>
+  </div>
+</header>

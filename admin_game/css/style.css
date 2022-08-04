@@ -1,55 +1,86 @@
 body {
-    min-width: 300px;
+  min-width: 300px;
 }
 
 input[type="file"] {
-    display: none;
+  display: none;
 }
 
 #img-menu {
-    filter: invert(1);
+  filter: invert(1);
 }
 
 h1 {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 label {
-    text-align: left;
+  text-align: left;
 }
 
 #add-img {
-    width: 200px;
-    height: 200px;
+  width: 200px;
+  height: 200px;
 }
 
 table img {
-    filter: invert(1);
+  filter: invert(1);
+  width: 30px;
 }
 
 #favicon {
-    margin-left: 10px;
+  margin-left: 10px;
+}
+
+table select {
+  width: 100%;
+}
+
+.card-a-div {
+  color: black;
+}
+
+.for-admin {
+  display: none;
+}
+
+.dropdown-menu i {
+  margin-right: 10px;
+}
+
+.card-a-div:hover {
+  color: black;
+  transform: scale(1.05);
+}
+
+.d-flex-acc {
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#choice-game {
+  display: none;
 }
 
 /**********************/
 /** version < 991px ***/
 /**********************/
 @media screen and (max-width: 991px) {
-    .dropdown-menu.show {
-        margin-left: -110px;
-    }
+  .dropdown-menu.show {
+    margin-left: -110px;
+  }
 }
 
 /**********************/
 /** version < 500px ***/
 /**********************/
 @media screen and (max-width: 500px) {
-    h1 {
-        display: none;
-    }
+  h1 {
+    display: none;
+  }
 }
