@@ -11,9 +11,12 @@ body {
   min-width: 300px;
 }
 
-.def_body {
+#def_body {
   position: relative;
   z-index: 2;
+  min-height: 92vh;
+  max-height: 92vh;
+  overflow-y: auto;
 }
 
 #img-menu {
@@ -49,6 +52,42 @@ a {
 .d-flex-acc {
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+#bakground_body {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  z-index: -2;
+}
+
+.card-img, .card-img-bottom, .card-img-top {
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.img-fluid {
+  max-height: 566px;
+}
+
+#info-game {
+  background-color: #fffffff2;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+  border: gray 2px solid;
+}
+
+#info-game-dates {
+  text-align: right;
+}
+
+.table-info-game {
+  max-width: 520px;
+}
+
+.icon-cup img {
+  width: 25px;
 }
 
 /**********************/

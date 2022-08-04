@@ -1,0 +1,243 @@
+/* === [General rules] === */
+html {
+    box-sizing: border-box;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+  
+  body {
+    font-family: sans-serif;
+    overflow: hidden;
+  }
+  /* === [/General rules] === */
+  
+  .sky {
+    min-height: 30vh;
+    background-color: lightblue;
+  }
+  
+  .sky img {
+    position: absolute;
+  }
+  
+  .sun {
+    width: 60px;
+    top: 20px;
+    left: 30px;
+    animation: sun-animation 2000ms linear infinite alternate both 
+  }
+  
+  @keyframes sun-animation {
+    0%,100% {
+      transform: rotate(-12deg) scaleX(1.2);
+    }
+  
+    50% {
+      transform: rotate(8deg) scaleY(1.18);
+    }
+  }
+  
+  .cloud {
+    z-index: 1
+  }
+  
+  @keyframes clouds-animation {
+    0% {
+      left: 100%
+    }
+  
+    100% {
+      left: -200px
+    }
+  }
+  
+  .cloud-1 {
+    width: 120px;
+    top: 80px;
+    animation:  cloud-1-animation 4800ms infinite alternate both,
+                clouds-animation 56000ms infinite both;
+  }
+  
+  @keyframes cloud-1-animation {
+    0%,100% {
+      transform: scaleX(1.12);
+    }
+  
+    50% {
+      transform: scaleY(1.05);
+    }
+  }
+  
+  .cloud-2 {
+    width: 90px;
+    top: 140px;
+    animation:  cloud-2-animation 3600ms infinite alternate both,
+                clouds-animation 66000ms 4200ms infinite both;;
+  }
+  
+  @keyframes cloud-2-animation {
+    0%,100% {
+      transform: rotate(-18deg) scaleX(1.16);
+    }
+  
+    50% {
+      transform: rotate(-8deg) scaleX(.92);
+    }
+  }
+  
+  .land {
+    height: 100vh;
+    width: 100%;
+    min-height: 30vh;
+    position: absolute;
+    min-height: 40vh;
+    background-color: #00965c;
+  }
+  
+  .tree {
+    position: absolute;
+    width: 128px
+  }
+  
+  @keyframes tree-animation {
+    0%,100% {
+      transform: scale(1.12, .96);
+    }
+  
+    50% {
+      transform: scale(.92, 1.08);
+    }
+  }
+  
+  @keyframes tree-moving {
+    0% {
+      left: 100%
+    }
+  
+    100% {
+      left: -128px;
+    }
+  }
+  
+  .tree-blue {
+    top: 2%;
+    left: 14%;
+    animation:  tree-animation 2400ms -100ms linear infinite,
+                tree-moving 20000ms -2000ms linear infinite;
+  }
+  
+  .tree-yellow {
+    top: 56%;
+    right: 12%;
+    animation:  tree-animation 2400ms -200ms linear infinite,
+                tree-moving 20000ms -5000ms linear infinite;
+  }
+  
+  .tree-red {
+    top: 4%;
+    right: 1%;
+    animation:  tree-animation 2400ms -300ms linear infinite,
+                tree-moving 20000ms -8000ms linear infinite;
+  }
+  
+  .tree-green {
+    top: 16%;
+    left: 54%;
+    animation:  tree-animation 2400ms -400ms linear infinite,
+                tree-moving 20000ms -15000ms linear infinite;
+  }
+  
+  .tree-cyan {
+    top: 58%;
+    left: 28%;
+    animation:  tree-animation 2400ms -500ms linear infinite,
+                tree-moving 20000ms -50ms linear infinite;
+  }
+  
+  .tree-orange {
+    top: 48%;
+    left: 4%;
+    animation:  tree-animation 2400ms linear infinite,
+                tree-moving 20000ms -90000ms linear infinite;
+  }
+  
+  .road {
+    margin-top: 33vh;
+    width: 100%;
+    position: relative;
+    min-height: 30vh;
+    background-color: #404040;
+    border-top: 4px solid #8f8f8f;
+    border-bottom: 4px solid #8f8f8f
+  }
+  
+  .road::before,
+  .road::after {
+    content: '';
+    display: block;
+    width: 26%;
+    height: 0;
+    border: 4px dashed #efefef;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    animation: road-animation 4000ms linear infinite
+  }
+  
+  @keyframes road-animation {
+    0% {
+      left: 100%
+    }
+    100% {
+      left: -26%;
+    }
+  }
+  
+  .road::before {
+    transform: translateY(-5vh)
+  }
+  
+  .road::after {
+    transform: translateY(5vh)
+  }
+  
+  .character {
+    position: absolute;
+    width: 80px;
+    z-index: 1;
+    animation: char-animation 2000ms ease-in-out infinite alternate;
+  }
+  
+  @keyframes char-animation {
+    0% {
+      transform: translateX(0);
+    }
+  
+    100% {
+      transform: translateX(40px);
+    }
+  }
+  
+  .turtle {
+    top: -2.8vh;
+    left: 6%;
+    animation-delay: -400ms;
+  }
+  
+  .mario {
+    top: 7.7vh;
+    left: 42%;
+    animation-delay: -1000ms;
+  }
+  
+  .dragon {
+    top: 17.5vh;
+    left: 22%;
+    animation-delay: -1200ms;
+  }

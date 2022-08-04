@@ -1,5 +1,6 @@
 body {
   min-width: 300px;
+  background-color: #8080808c;
 }
 
 input[type="file"] {
@@ -69,6 +70,10 @@ table select {
 
 .img-validate {
   filter: none;
+}
+
+.card {
+  border: gray 1px solid;
 }
 
 /**********************/

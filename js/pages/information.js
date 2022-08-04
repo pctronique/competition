@@ -1,15 +1,16 @@
 function addRowUserGameInfo(gameUser) {
-  console.log(gameUser.userId);
   let myIndex = recupId(utilisateurTab, gameUser.userId);
   let user = utilisateurTab[myIndex];
   return (
     '<tr id="concours_' +
     gameUser.id +
     '">' +
-    "<td>" +
+    "<td class=\"text-center icon-cup\">" +
+    "</td>" +
+    "<td class=\"text-center\">" +
     gameUser.score +
     "</td>" +
-    "<td>" +
+    "<td class=\"text-center\">" +
     user.speudo +
     "</td>" +
     "</tr>"
@@ -20,12 +21,25 @@ function loadlistScoreInfo(id) {
   document.getElementById("list_score_game").innerHTML = "";
   let tabReverse = reverseTab(gameUserTab);
   if (tabReverse.length > 0) {
-    tabReverse.forEach((element) => {
+    for (let index = 0; index < tabReverse.length; index++) {
+      const element = tabReverse[index];
       if(element.gameId == id) {
         document.getElementById("list_score_game").innerHTML += addRowUserGameInfo(
           element
         );
       }
+    }
+    trieTabInformationGame();
+    let i = 0;
+    document.getElementById("list_score_game").querySelectorAll('tr').forEach(element => {
+      if(i == 0) {
+        element.querySelector(".icon-cup").innerHTML = '<img src="./img/trophee.svg" alt="premier" />';
+      } else if(i == 1) {
+        element.querySelector(".icon-cup").innerHTML = '<img src="./img/deuxieme-prix.svg" alt="deuxième" />';
+      } else if(i == 2) {
+        element.querySelector(".icon-cup").innerHTML = '<img src="./img/troisieme-prix.svg" alt="troisième" />';
+      }
+      i++;
     });
   } else {
     document.getElementById("list_score_game").innerHTML =
@@ -33,6 +47,9 @@ function loadlistScoreInfo(id) {
   }
 }
 
+function trieTabInformationGame() {
+  sortTable("table-info-game", "score-game-user", -1);
+}
 
 function information() {
   let indexPg = urlGetName("id");

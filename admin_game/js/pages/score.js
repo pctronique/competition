@@ -30,16 +30,19 @@ function addRowUserGame(gameUser) {
   let game = gameTab[myIndex];
   let imgValidate = "./img/icons8-red-square-96.svg";
   let altValidate = "Il n'est plus valide.";
+  let validate = "0";
   if(dateToInt(dateNowStr(dateNowStr())) >= dateToInt(game.dateStart) && dateToInt(dateNowStr()) < dateToInt(game.dateEnd)) {
     imgValidate = "./img/icons8-green-square-96.svg";
     altValidate = "Il est valide.";
+    validate = "1";
   }
   return (
     '<tr id="concours_' +
     gameUser.id +
     '">' +
-    "<td>" +
-    '<img class="img-validate" src="'+imgValidate+'" alt="'+altValidate+'" />' +
+    '<td class="icon-validate">' +
+    //'<img class="img-validate" src="'+imgValidate+'" alt="'+altValidate+'" />' +
+    validate+
     "</td>" +
     "<td>" +
     game.name +
@@ -52,15 +55,29 @@ function addRowUserGame(gameUser) {
   );
 }
 
+function trieTabInformationScore() {
+  sortTable("table-info-score", "game-user-validate", -1);
+}
+
 function loadlistScore() {
   document.getElementById("list_score").innerHTML = "";
   let tabReverse = reverseTab(gameUserTab);
   if (tabReverse.length > 0) {
-    tabReverse.forEach((element) => {
+    for (let index = 0; index < tabReverse.length; index++) {
+      const element = tabReverse[index];
       if(element.userId == sessionTab.id) {
         document.getElementById("list_score").innerHTML += addRowUserGame(
           element
         );
+      }
+    }
+    trieTabInformationScore();
+    document.getElementById("list_score").querySelectorAll('tr').forEach(element => {
+      let elementTd = element.querySelector(".icon-validate");
+      if(elementTd.innerHTML == "1") {
+        elementTd.innerHTML = '<img class="img-validate" src="./img/icons8-green-square-96.svg" alt="Il est valide." />';
+      } else {
+        elementTd.innerHTML = '<img class="img-validate" src="./img/icons8-red-square-96.svg" alt="Il n\'est plus valide." />';
       }
     });
   } else {
@@ -83,6 +100,8 @@ function addParticipation(e) {
 function addEventAllScore() {
   document.getElementById('participer').addEventListener('click', addParticipation);
 }
+
+
 
 function score() {
   if ("id" in sessionTab) {

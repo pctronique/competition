@@ -9,20 +9,25 @@
       src="./../admin_game/img/icons8-ajouter-une-image-90.png"
     />
   </div>
-  <p>Créé le : <span id="score-game-date"></span></p>
-  <p>Commence le : <span id="score-game-dateStart"></span></p>
-  <p>fini le : <span id="score-game-dateEnd"></span></p>
-  <p id="score-game-desc">dd</p>
+  <div id="info-game">
+    <p id="info-game-dates">Créé le : <span id="score-game-date"></span><br />
+    Commence le : <span id="score-game-dateStart"></span><br />
+    fini le : <span id="score-game-dateEnd"></span></p>
+    <p id="info-game-desc"><span id="score-game-desc"></span></p>
+  </div>
 </section>
 
 <section class="container mt-5">
-  <table class="table table-dark table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Score</th>
-        <th scope="col">Login</th>
-      </tr>
-    </thead>
-    <tbody id="list_score_game"></tbody>
-  </table>
+  <div class="d-flex justify-content-center">
+    <table class="table table-dark table-striped table-info-game" id="table-info-game">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center"></th>
+          <th scope="col" class="text-center" id="score-game-user">Score</th>
+          <th scope="col" class="text-center">Joueurs</th>
+        </tr>
+      </thead>
+      <tbody id="list_score_game"></tbody>
+    </table>
+  </div>
 </section>

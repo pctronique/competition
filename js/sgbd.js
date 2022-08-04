@@ -49,6 +49,23 @@ function gameUser(id, gameId, userId, score) {
   };
 }
 
+function deleteGame(id) {
+  let myIndex = recupId(gameTab, id);
+  if (myIndex !== -1) {
+    let deleteGameUser = [];
+    for (let index = 0; index < gameUserTab.length; index++) {
+      if(gameUserTab[index].gameId == id) {
+        deleteGameUser.push(gameUserTab[index].id);
+      }
+    }
+    deleteGameUser.reverse();
+    for (let index = 0; index < deleteGameUser.length; index++) {
+      gameUserTab.splice(deleteGameUser[index], 1);
+    }
+    gameTab.splice(myIndex, 1);
+  }
+}
+
 function recupId(dataTab, id) {
   for (let index = 0; index < dataTab.length; index++) {
     if (dataTab[index].id == id) {

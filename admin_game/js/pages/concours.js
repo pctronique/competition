@@ -27,8 +27,7 @@ function validationConcours(e) {
     imgSrc != "" &&
     name.value != "" &&
     dateStart.value != "" &&
-    dateEnd.value != "" &&
-    description.value != ""
+    dateEnd.value != ""
   ) {
     if (recupIdNameConcours(gameIdDef, name.value)) {
       addGame(
@@ -143,7 +142,7 @@ function addEventAllConcours() {
         )
       ) {
         if (myIndex !== -1) {
-          gameTab.splice(myIndex, 1);
+          deleteGame(id);
           saveLocalSGBD();
           loadlistConcours();
           eraseValueFormConcours();

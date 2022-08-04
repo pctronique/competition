@@ -32,14 +32,3 @@ function dateNowStr() {
   }
   return today.getFullYear() + "-" + todayMonth + "-" + todayDate;
 }
-
-function reverseTab(tab) {
-  if(tab != undefined) {
-    let tabReverse = [];
-    for (let index = 0; index < tab.length; index++) {
-      const element = tab[index];
-      tabReverse.push(element);
-    }
-    return tabReverse.reverse();
-  }
-}
