@@ -76,6 +76,16 @@ table select {
   border: gray 1px solid;
 }
 
+.custom-control-display {
+    border-color: red !important;
+    background-color: #ff7c00 !important;
+}
+
+.custom-control-display:checked {
+    border-color: green !important;
+    background-color: #01ff01 !important;
+}
+
 /**********************/
 /** version < 991px ***/
 /**********************/

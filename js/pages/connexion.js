@@ -17,9 +17,9 @@ function validationConnexion(e) {
           userSession(utilisateurTab[theFindLogin]);
           window.location.href = "./admin_game";
         } else if (idRole == 3) {
-          alert.log("Le compte a été supprimé.");
+          alert("Le compte a été supprimé.");
         } else if (idRole == 4) {
-          alert.log("Le compte a été banni.");
+          alert("Le compte a été banni.");
         }
       } else {
         alert("Impossible de vous connecter.");
@@ -27,7 +27,7 @@ function validationConnexion(e) {
     });
   } else if (speudo == "") {
     alert("Le login ne peu pas être vide.");
-  } else if (pass == "" || passRepeat == "") {
+  } else if (pass == "") {
     alert("Le mot de passe ne peu pas être vide.");
   } else {
     alert("Impossible de vous connecter.");

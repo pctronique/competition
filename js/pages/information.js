@@ -17,13 +17,39 @@ function addRowUserGameInfo(gameUser) {
   );
 }
 
+function addParticipationConcours(idGame) {
+	addGameUser(idGame, sessionTab.id, 0);
+	saveLocalSGBD();
+  location.reload();
+}
+
+function addBtParticipationConcoursScore(id) {
+  document.getElementById("bt-participation-concours").innerHTML = "";
+  if ("id" in sessionTab) {
+    if(findGameAndUser(id)) {
+      let myIndex = recupId(gameTab, parseInt(id));
+      if(myIndex != -1) {
+        let game = gameTab[myIndex];
+        if(dateToInt(dateNowStr()) < dateToInt(game.dateEnd)) {
+          document.getElementById("bt-participation-concours").innerHTML = '<button id="participer" type="button" class="btn btn-dark m-1">Participer</button>';
+          document.getElementById('participer').addEventListener("click", function (e) {
+            addParticipationConcours(parseInt(id));
+          })
+        }
+      }
+    }
+  }
+}
+
 function loadlistScoreInfo(id) {
   document.getElementById("list_score_game").innerHTML = "";
+  let nbColumn = 0;
   let tabReverse = reverseTab(gameUserTab);
   if (tabReverse.length > 0) {
     for (let index = 0; index < tabReverse.length; index++) {
       const element = tabReverse[index];
       if(element.gameId == id) {
+        nbColumn++;
         document.getElementById("list_score_game").innerHTML += addRowUserGameInfo(
           element
         );
@@ -41,9 +67,10 @@ function loadlistScoreInfo(id) {
       }
       i++;
     });
-  } else {
+  }
+  if(nbColumn == 0) {
     document.getElementById("list_score_game").innerHTML =
-      "<tr>" + '<td colspan="2">Il n\'y a pas de catégorie.</td>' + "</tr>";
+      "<tr>" + '<td colspan="3">il n\'y a pas de participants pour le moment.</td>' + "</tr>";
   }
 }
 
@@ -60,7 +87,11 @@ function information() {
     indexPg = -1;
   }
   let myIndex = recupId(gameTab, parseInt(indexPg));
-  if (myIndex != -1) {
+  let visible = 0;
+  if(myIndex != -1) {
+    visible = gameTab[myIndex].visible;
+  }
+  if (myIndex != -1 && visible == 1) {
     fetch_txt("./templates/information.html").then(function (response) {
       document.getElementById("def_body").innerHTML = response;
       document.getElementById("score-game-title").innerHTML =
@@ -78,6 +109,7 @@ function information() {
         gameTab[myIndex].dateEnd
       );
       loadlistScoreInfo(indexPg);
+      addBtParticipationConcoursScore(indexPg);
     });
   } else {
     document.getElementById("def_body").innerHTML =

@@ -39,3 +39,21 @@ function reverseTab(tab) {
     return tabReverse.reverse();
   }
 }
+
+function findLogin(speudo) {
+	for (let index = 0; index < utilisateurTab.length; index++) {
+	  if (utilisateurTab[index].speudo == speudo) {
+		return index;
+	  }
+	}
+	return -1;
+}
+
+function findGameAndUser(idGame) {
+	for (let index = 0; index < gameUserTab.length; index++) {
+	  if (idGame == gameUserTab[index].gameId && sessionTab.id == gameUserTab[index].userId) {
+		return false;
+	  }
+	}
+	return true;
+}

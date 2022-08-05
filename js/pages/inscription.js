@@ -1,12 +1,3 @@
-function findLogin(speudo) {
-  for (let index = 0; index < utilisateurTab.length; index++) {
-    if (utilisateurTab[index].speudo == speudo) {
-      return index;
-    }
-  }
-  return -1;
-}
-
 function validationInscription(e) {
   // pour ne pas prendre l'adresse de l'action du formulaire.
   e.preventDefault();

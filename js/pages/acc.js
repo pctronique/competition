@@ -33,7 +33,9 @@ function displayAllCard() {
   sectionCard.innerHTML = "";
   let tabReverse = reverseTab(gameTab);
   tabReverse.forEach((element) => {
-    sectionCard.innerHTML += displayCard(element);
+    if(element.visible == 1) {
+      sectionCard.innerHTML += displayCard(element);
+    }
   });
 }
 

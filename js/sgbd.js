@@ -27,7 +27,7 @@ function utilisateur(id, speudo, pass, roleId) {
   };
 }
 
-function game(id, name, image, date, dateStart, dateEnd, description, userId) {
+function game(id, name, image, date, dateStart, dateEnd, description, userId, visible = 1) {
   return {
     id: id,
     name: name,
@@ -37,6 +37,7 @@ function game(id, name, image, date, dateStart, dateEnd, description, userId) {
     dateEnd: dateEnd,
     description: description,
     userId: userId,
+    visible: visible,
   };
 }
 
@@ -107,7 +108,7 @@ function addUser(speudo, pass, roleId) {
   return userTableOne;
 }
 
-function addGame(name, image, date, dateStart, dateEnd, description, userId) {
+function addGame(name, image, date, dateStart, dateEnd, description, userId, visible = 1) {
   let idTab = gameIdDef;
   if (gameIdDef == -1) {
     idTab = gameAutoIncrement;
@@ -122,7 +123,8 @@ function addGame(name, image, date, dateStart, dateEnd, description, userId) {
     dateStart,
     dateEnd,
     description,
-    userId
+    userId,
+    visible
   );
   if (idIndex == -1) {
     gameTab.push(gameTableOne);
@@ -242,6 +244,42 @@ function loadJSON_SGBD(jsonData) {
   gameUserTab = result.gameUserTab;
 
   saveLocalSGBD();
+}
+
+function loadDefJSON_SGBD(jsonData) {
+  var result = JSON.parse(jsonData);
+  //roleAutoIncrement = result.roleAutoIncrement;
+  utilisateurDefAutoIncrement = result.utilisateurAutoIncrement;
+  gameAutoIncrement = result.gameAutoIncrement;
+  gameUserAutoIncrement = result.gameUserAutoIncrement;
+  //roleTab = result.roleTab;
+  utilisateurDefTab = result.utilisateurTab;
+  gameTab = result.gameTab;
+  gameUserTab = result.gameUserTab;
+
+  if(utilisateurDefAutoIncrement > utilisateurAutoIncrement) {
+    utilisateurAutoIncrement = utilisateurDefAutoIncrement;
+  }
+
+  for (let index = 0; index < utilisateurDefTab.length; index++) {
+    const element = utilisateurDefTab[index];
+    if(recupId(utilisateurTab, element.id) == -1) {
+      if(findLogin(element.speudo) != -1) {
+        element.speudo += "_01";
+      }
+      utilisateurTab.push(element);
+    }
+  }
+
+  saveLocalSGBD();
+}
+
+function del_SGBD() {
+  localStorage.removeItem('pctr_comp_role');
+  localStorage.removeItem('pctr_comp_user');
+  localStorage.removeItem('pctr_comp_game');
+  localStorage.removeItem('pctr_comp_game_user');
+  sessionStorage.removeItem("pctr_competition_session");
 }
 
 function addDefRole() {
