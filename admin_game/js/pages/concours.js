@@ -93,10 +93,10 @@ function addRowConcours(concours) {
     "<td>" +
     concours.name +
     "</td>" +
-    '<td class="text-center">' +
+    '<td class="text-center display-column-pc">' +
     displayDate(concours.dateStart) +
     "</td>" +
-    '<td class="text-center">' +
+    '<td class="text-center display-column-pc">' +
     displayDate(concours.dateEnd) +
     "</td>" +
     '<td class="text-center">' +

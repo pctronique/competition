@@ -1,10 +1,11 @@
 function displayCard(game) {
   let descMain =
-    "Début : " +
+    "<span class=\"\">Début : " +
     displayDate(game.dateStart) +
-    "<br />" +
-    "fin : " +
-    displayDate(game.dateEnd);
+    "</span><br />" +
+    "<span class=\"\">fin : " +
+    displayDate(game.dateEnd)+
+    "</span>";
   return (
     '<a class="card-a-div" href="./?ind=info&id=' +
     game.id +

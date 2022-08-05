@@ -241,3 +241,18 @@ html {
     left: 22%;
     animation-delay: -1200ms;
   }
+
+  .sky, .land, .road {
+    box-sizing: border-box;
+    overflow: none;
+    width: 100%;
+  }
+
+  #bakground_body {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    z-index: -2;
+    box-sizing: border-box;
+    overflow: none;
+  }

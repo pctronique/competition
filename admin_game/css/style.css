@@ -86,12 +86,19 @@ table select {
     background-color: #01ff01 !important;
 }
 
+h2 {
+  font-size: 50px;
+}
+
 /**********************/
 /** version < 991px ***/
 /**********************/
 @media screen and (max-width: 991px) {
   .dropdown-menu.show {
     margin-left: -110px;
+  }
+  .display-column-pc {
+    display: none;
   }
 }
 

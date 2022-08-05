@@ -1,0 +1,25 @@
+@font-face /* POLICE */ {
+    font-family: "GrandGalaxy";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./../font/GrandGalaxy-Rpopl.otf") format("truetype");
+}
+
+@font-face /* POLICE */ {
+    font-family: "FutureTimeSplitters";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./../font/Future TimeSplitters.otf") format("truetype");
+}
+
+@font-face /* POLICE */ {
+    font-family: "pcsenior";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./../font/pcsenior.ttf") format("truetype");
+}
+
+.title-game {
+    font-family: "pcsenior", Helvetica, sans-serif;
+    font-size: 60px;
+}
