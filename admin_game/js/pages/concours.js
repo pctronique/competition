@@ -205,7 +205,7 @@ function loadlistConcours() {
         element
       );
     });
-    sortTable("table-info-concours", "game-concours-validate", -1);
+    sortTable1("table-info-concours", "game-concours-validate", -1);
     document
       .getElementById("list_competition")
       .querySelectorAll("tr")

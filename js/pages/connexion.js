@@ -35,11 +35,21 @@ function validationConnexion(e) {
 }
 
 function activeBtConnexion() {
+  activePassEyeSlash();
   document
     .getElementById("valider")
     .addEventListener("click", validationConnexion);
   document.getElementById("annuler").addEventListener("click", function (e) {
     window.location.href = "./";
+  });
+
+  /**
+   * Action si on touche le bouton entrer du clavier.
+   */
+   document.body.addEventListener("keydown", (event) => {
+    if (event.key == "Enter") {
+      validationConnexion(event);
+    }
   });
 }
 

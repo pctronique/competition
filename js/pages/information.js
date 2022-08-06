@@ -55,7 +55,7 @@ function loadlistScoreInfo(id) {
         );
       }
     }
-    trieTabInformationGame();
+    sortTable1("table-info-game", "score-game-user", -1);
     let i = 0;
     document.getElementById("list_score_game").querySelectorAll('tr').forEach(element => {
       if(i == 0) {
@@ -72,10 +72,6 @@ function loadlistScoreInfo(id) {
     document.getElementById("list_score_game").innerHTML =
       "<tr>" + '<td colspan="3">il n\'y a pas de participants pour le moment.</td>' + "</tr>";
   }
-}
-
-function trieTabInformationGame() {
-  sortTable("table-info-game", "score-game-user", -1);
 }
 
 function validateInformationGame(game) {
