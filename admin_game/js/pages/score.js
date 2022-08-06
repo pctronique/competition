@@ -218,7 +218,7 @@ function loadlistScore() {
         }
       }
     }
-    sortTable("table-info-score", "game-user-validate", -1);
+    sortTable1("table-info-score", "game-user-validate", -1);
     document
       .getElementById("list_score")
       .querySelectorAll("tr")

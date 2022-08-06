@@ -55,6 +55,7 @@ function validateCptUserPass(e) {
 }
 
 function addEventAllUser() {
+  activePassEyeSlash();
   document
     .getElementById("valider")
     .addEventListener("click", validateCptUserName);
