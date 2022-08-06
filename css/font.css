@@ -19,7 +19,16 @@
     src: url("./../font/pcsenior.ttf") format("truetype");
 }
 
+@font-face /* POLICE */ {
+    font-family: "Computer";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./../font/Computer.ttf") format("truetype");
+}
+
 .title-game {
-    font-family: "pcsenior", Helvetica, sans-serif;
+    font-family: "Computer", Helvetica, sans-serif;
+    font-weight: bold;
+    color:#673ab7;
     font-size: 60px;
 }
