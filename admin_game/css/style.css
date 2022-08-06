@@ -1,5 +1,5 @@
 body {
-  min-width: 300px;
+  min-width: 340px;
   background-color: #8080808c;
 }
 
@@ -14,6 +14,7 @@ input[type="file"] {
 h1 {
   color: white;
   text-decoration: none;
+  margin-left: -60px;
 }
 
 a {
@@ -25,7 +26,7 @@ label {
 }
 
 #add-img {
-  width: 200px;
+  width: 286px;
   height: 200px;
 }
 
@@ -86,12 +87,19 @@ table select {
     background-color: #01ff01 !important;
 }
 
+h2 {
+  font-size: 50px;
+}
+
 /**********************/
 /** version < 991px ***/
 /**********************/
 @media screen and (max-width: 991px) {
   .dropdown-menu.show {
     margin-left: -110px;
+  }
+  .display-column-pc {
+    display: none;
   }
 }
 

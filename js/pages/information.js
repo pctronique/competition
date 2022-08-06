@@ -31,7 +31,7 @@ function addBtParticipationConcoursScore(id) {
       if(myIndex != -1) {
         let game = gameTab[myIndex];
         if(dateToInt(dateNowStr()) < dateToInt(game.dateEnd)) {
-          document.getElementById("bt-participation-concours").innerHTML = '<button id="participer" type="button" class="btn btn-dark m-1">Participer</button>';
+          document.getElementById("bt-participation-concours").innerHTML = '<button id="participer" type="button" class="btn btn-dark m-1 mb-5">Participer</button>';
           document.getElementById('participer').addEventListener("click", function (e) {
             addParticipationConcours(parseInt(id));
           })
@@ -78,6 +78,18 @@ function trieTabInformationGame() {
   sortTable("table-info-game", "score-game-user", -1);
 }
 
+function validateInformationGame(game) {
+  let validate = validateGame(game);
+  let img = document.querySelector('.img_validate');
+  if(validate == 1) {
+    img.src = "./../img/icons8-blue-square-96.svg";
+    img.alt = "n\'a pas commencé";
+  } else if(validate == 2) {
+    img.src = "./../img/icons8-green-square-96.svg";
+    img.alt = "en cours";
+  }
+}
+
 function information() {
   let indexPg = urlGetName("id");
   if (indexPg == undefined) {
@@ -98,7 +110,18 @@ function information() {
         gameTab[myIndex].name;
       document.getElementById("score-game-desc").innerHTML =
         gameTab[myIndex].description;
-      document.getElementById("score-game-img").src = gameTab[myIndex].image;
+      let imgSrc = "";
+      let posImgGame = recupIdImg(recupIdImageIdGame(gameTab[myIndex].id));
+      if(posImgGame[0] != -1) {
+        imgSrc = imagTab[posImgGame[0]][posImgGame[1]].src;
+      }
+      let speudoUser = "";
+      let posUser = recupId(utilisateurTab, gameTab[myIndex].userId);
+      if(posUser != -1) {
+        speudoUser = utilisateurTab[posUser].speudo;
+      }
+      document.getElementById("score-game-img").src = imgSrc;
+      document.getElementById("score-game-user").innerHTML = speudoUser;
       document.getElementById("score-game-date").innerHTML = displayDate(
         gameTab[myIndex].date
       );
@@ -108,6 +131,7 @@ function information() {
       document.getElementById("score-game-dateEnd").innerHTML = displayDate(
         gameTab[myIndex].dateEnd
       );
+      validateInformationGame(gameTab[myIndex]);
       loadlistScoreInfo(indexPg);
       addBtParticipationConcoursScore(indexPg);
     });

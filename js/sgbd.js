@@ -2,14 +2,17 @@ let utilisateurAutoIncrement = 1;
 let roleAutoIncrement = 1;
 let gameAutoIncrement = 1;
 let gameUserAutoIncrement = 1;
+let gameImgAutoIncrement = 1;
 let utilisateurTab = [];
 let roleTab = [];
 let gameTab = [];
 let gameUserTab = [];
+let imagTab = [];
 let utilisateurIdDef = -1;
 let roleIdDef = -1;
 let gameIdDef = -1;
 let gameUserIdDef = -1;
+let gameImgIdDef = -1;
 
 function role(id, name) {
   return {
@@ -27,11 +30,18 @@ function utilisateur(id, speudo, pass, roleId) {
   };
 }
 
-function game(id, name, image, date, dateStart, dateEnd, description, userId, visible = 1) {
+function image(id, gameId, src) {
+  return {
+    id: id,
+    gameId, gameId,
+    src: src,
+  };
+}
+
+function game(id, name, date, dateStart, dateEnd, description, userId, visible = 1) {
   return {
     id: id,
     name: name,
-    image: image,
     date: date,
     dateStart: dateStart,
     dateEnd: dateEnd,
@@ -53,10 +63,37 @@ function gameUser(id, gameId, userId, score) {
 function deleteGame(id) {
   let myIndex = recupId(gameTab, id);
   if (myIndex !== -1) {
+    let game = gameTab[myIndex];
+    let imgPos = recupIdImg(game.imageId);
+    if(imgPos[0] != -1) {
+      imagTab[imgPos[0]][imgPos[1]] = {};
+    }
+    let deleteImage = [];
+    for (let index = 0; index < imagTab.length; index++) {
+      const element = imagTab[index];
+      if(element != undefined) {
+        for (let index1 = 0; index1 < element.length; index1++) {
+          const element1 = element[index1];
+          if(element1.gameId == id) {
+            deleteImage.push(index+":"+index1);
+          }
+        }
+      }
+    }
+    deleteImage.reverse();
+    for (let index = 0; index < deleteImage.length; index++) {
+      let posiImg = deleteImage[index].split(":");
+      imagTab[posiImg[0]].splice(posiImg[1], 1);
+    }
+    for (let index = (imagTab.length-1); index >= 0; index--) {
+      if(imagTab[index].length == 0) {
+        imagTab.splice(index, 1);
+      }
+    }
     let deleteGameUser = [];
     for (let index = 0; index < gameUserTab.length; index++) {
       if(gameUserTab[index].gameId == id) {
-        deleteGameUser.push(gameUserTab[index].id);
+        deleteGameUser.push(index);
       }
     }
     deleteGameUser.reverse();
@@ -71,6 +108,36 @@ function recupId(dataTab, id) {
   for (let index = 0; index < dataTab.length; index++) {
     if (dataTab[index].id == id) {
       return index;
+    }
+  }
+  return -1;
+}
+
+function recupIdImg(id) {
+  for (let index = 0; index < imagTab.length; index++) {
+    const element = imagTab[index];
+    if(element != undefined) {
+      for (let index1 = 0; index1 < element.length; index1++) {
+        const element1 = element[index1];
+        if(element1.id == id) {
+          return [index, index1];
+        }
+      }
+    }
+  }
+  return [-1, -1];
+}
+
+function recupIdImageIdGame(id) {
+  for (let index = 0; index < imagTab.length; index++) {
+    const element = imagTab[index];
+    if(element != undefined) {
+      for (let index1 = 0; index1 < element.length; index1++) {
+        const element1 = element[index1];
+        if(element1.gameId == id) {
+          return element1.id;
+        }
+      }
     }
   }
   return -1;
@@ -108,7 +175,37 @@ function addUser(speudo, pass, roleId) {
   return userTableOne;
 }
 
-function addGame(name, image, date, dateStart, dateEnd, description, userId, visible = 1) {
+function addImg(gameId, src) {
+  if(imagTab.length == 0) {
+    imagTab.push([]);
+  }
+  let idTab = gameImgIdDef;
+  if (gameImgIdDef == -1) {
+    idTab = gameImgAutoIncrement;
+    gameImgAutoIncrement++;
+  }
+  let idIndex = recupIdImg(idTab);
+  let imgTableOne = image(idTab, gameId, src);
+  if (idIndex[0] == -1) {
+    console.log(imagTab[imagTab.length-1]);
+    if(imagTab[imagTab.length-1] != undefined) {
+      if(imagTab[imagTab.length-1].length >= 4) {
+        imagTab.push([]);
+      }
+    }
+    if(imagTab[imagTab.length-1] != undefined) {
+      imagTab[imagTab.length-1].push(imgTableOne);
+    } else {
+      imagTab[imagTab.length-1] = [];
+      imagTab[imagTab.length-1].push(imgTableOne);
+    }
+  } else {
+    imagTab[idIndex[0]][idIndex[1]] = imgTableOne;
+  }
+  return imgTableOne;
+}
+
+function addGame(name, date, dateStart, dateEnd, description, userId, visible = 1) {
   let idTab = gameIdDef;
   if (gameIdDef == -1) {
     idTab = gameAutoIncrement;
@@ -118,7 +215,6 @@ function addGame(name, image, date, dateStart, dateEnd, description, userId, vis
   let gameTableOne = game(
     idTab,
     name,
-    image,
     date,
     dateStart,
     dateEnd,
@@ -157,6 +253,11 @@ function saveLocalSGBD() {
 
     }
     localStorage.setItem('pctr_comp_role', JSON.stringify(valuesRole));*/
+  let valuesImg = {
+    number: gameImgAutoIncrement,
+    listData: imagTab,
+  };
+  localStorage.setItem("pctr_comp_img", JSON.stringify(valuesImg));
   let valuesUser = {
     number: utilisateurAutoIncrement,
     listData: utilisateurTab,
@@ -183,6 +284,14 @@ function loadLocalSGBD() {
             roleTab = values.listData;
         }
     }*/
+  var valuesUser = localStorage.getItem("pctr_comp_img");
+  if (valuesUser !== undefined && valuesUser != "") {
+    let values = JSON.parse(valuesUser);
+    if (values != undefined && values != "") {
+      gameImgAutoIncrement = values.number;
+      imagTab = values.listData;
+    }
+  }
   var valuesUser = localStorage.getItem("pctr_comp_user");
   if (valuesUser !== undefined && valuesUser != "") {
     let values = JSON.parse(valuesUser);
@@ -216,10 +325,12 @@ function saveFileSGBD() {
     utilisateurAutoIncrement: utilisateurAutoIncrement,
     gameAutoIncrement: gameAutoIncrement,
     gameUserAutoIncrement: gameUserAutoIncrement,
+    gameImgAutoIncrement : gameImgAutoIncrement,
     //"roleTab" : roleTab,
     utilisateurTab: utilisateurTab,
     gameTab: gameTab,
     gameUserTab: gameUserTab,
+    imagTab: imagTab,
   };
   var blob = new Blob([JSON.stringify(values)], { type: "text" });
   const blobUrl = URL.createObjectURL(blob);
@@ -238,10 +349,12 @@ function loadJSON_SGBD(jsonData) {
   utilisateurAutoIncrement = result.utilisateurAutoIncrement;
   gameAutoIncrement = result.gameAutoIncrement;
   gameUserAutoIncrement = result.gameUserAutoIncrement;
+  gameImgAutoIncrement = result.gameImgAutoIncrement;
   //roleTab = result.roleTab;
   utilisateurTab = result.utilisateurTab;
   gameTab = result.gameTab;
   gameUserTab = result.gameUserTab;
+  imagTab = result.imagTab;
 
   saveLocalSGBD();
 }
@@ -252,10 +365,12 @@ function loadDefJSON_SGBD(jsonData) {
   utilisateurDefAutoIncrement = result.utilisateurAutoIncrement;
   gameAutoIncrement = result.gameAutoIncrement;
   gameUserAutoIncrement = result.gameUserAutoIncrement;
+  gameImgAutoIncrement = result.gameImgAutoIncrement;
   //roleTab = result.roleTab;
   utilisateurDefTab = result.utilisateurTab;
   gameTab = result.gameTab;
   gameUserTab = result.gameUserTab;
+  imagTab = result.imagTab;
 
   if(utilisateurDefAutoIncrement > utilisateurAutoIncrement) {
     utilisateurAutoIncrement = utilisateurDefAutoIncrement;

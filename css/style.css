@@ -17,7 +17,7 @@ body {
   position: relative;
   box-sizing: border-box;
   overflow: none;
-  min-width: 300px;
+  min-width: 320px;
 }
 
 #def_body {
@@ -37,6 +37,7 @@ body {
 h1 {
   color: white;
   text-decoration: none;
+  margin-left: -60px;
 }
 
 a {
@@ -84,11 +85,13 @@ a {
 }
 
 #info-game {
+  position: relative;
   background-color: #ffffffdb;
   padding: 10px;
   margin: 10px;
   border-radius: 20px;
   border: gray 2px solid;
+  box-shadow: #808080a6 15px 15px 15px;
 }
 
 #info-game-dates {
@@ -103,12 +106,67 @@ a {
   width: 25px;
 }
 
+.card {
+  box-shadow: #808080a6 15px 15px 15px;
+}
+
+.date-game-acc {
+  text-align: right;
+}
+
+.descrip-game-acc {
+  position: relative;
+}
+
+.descrip-game-acc img {
+  position: absolute;
+  width: 50px;
+}
+
+#info-game img {
+  position: absolute;
+  width: 50px;
+}
+
+#score-game-img {
+  border-radius: 15px;
+  box-shadow: #808080a6 15px 15px 15px;
+}
+
+.table-info-game {
+  box-shadow: #808080a6 15px 15px 15px;
+}
+
+#participer {
+  box-shadow: #808080a6 15px 15px 15px;
+}
+
+#score-game-title {
+  text-shadow: #808080a6 15px 15px 15px;
+}
+
+/**********************/
+/** version < 991px ***/
+/**********************/
+@media screen and (min-width: 667px) {
+  #score-game-img {
+    width: 100%;
+  }
+
+}
+
 /**********************/
 /** version < 991px ***/
 /**********************/
 @media screen and (max-width: 991px) {
   .dropdown-menu.show {
     margin-left: -110px;
+    
+  }
+  #info-game-desc {
+    max-height: 200px;
+    overflow: none;
+    overflow-y: auto;
   }
 }
 

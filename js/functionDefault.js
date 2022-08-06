@@ -57,3 +57,21 @@ function findGameAndUser(idGame) {
 	}
 	return true;
 }
+
+function urlGetName(name) {
+	var url = new URL(document.location.href);
+	return url.searchParams.get(name);
+}
+
+function validateGame(game) {
+	if(game != undefined) {
+		let validate = 1;
+		if(dateToInt(dateNowStr(dateNowStr())) >= dateToInt(game.dateStart) && dateToInt(dateNowStr()) < dateToInt(game.dateEnd)) {
+			validate = 2;
+		} else if(dateToInt(dateNowStr()) >= dateToInt(game.dateEnd)) {
+			validate = 0;
+		}
+		return validate;
+	}
+	return -1;
+}

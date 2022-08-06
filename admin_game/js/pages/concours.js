@@ -11,6 +11,7 @@ function validationConcours(e) {
 
   let dateString = dateNowStr();
   let idUser = sessionTab.id;
+  let imageId = -1;
 
   if (idConcour.value != "-1") {
     gameIdDef = parseInt(idConcour.value);
@@ -18,29 +19,30 @@ function validationConcours(e) {
     if (myIndex != -1) {
       idUser = gameTab[myIndex].userId;
       dateString = gameTab[myIndex].date;
+      imageId = recupIdImageIdGame(gameTab[myIndex].id);
     }
-    if (imgSrc == "") {
-      imgSrc = gameTab[myIndex].image;
-    }
+    gameImgIdDef = imageId;
   }
 
   if (
-    imgSrc != "" &&
+    (imgSrc != "" || imageId != -1) &&
     name.value != "" &&
     dateStart.value != "" &&
     dateEnd.value != ""
   ) {
     if (recupIdNameConcours(gameIdDef, name.value)) {
-      addGame(
+      let idGame = addGame(
         name.value,
-        imgSrc,
         dateString,
         dateStart.value,
         dateEnd.value,
         description.value,
         idUser,
         (visible.checked ? 1 : 0)
-      );
+      ).id;
+      if(imgSrc != "") {
+        addImg(idGame, imgSrc);
+      }
       saveLocalSGBD();
       loadlistConcours();
 
@@ -55,7 +57,7 @@ function validationConcours(e) {
 
 function eraseValueFormConcours() {
   document.getElementById("id-concour").value = "-1";
-  document.getElementById("checkDisplay").checked = false;
+  document.getElementById("checkDisplay").checked = true;
   document.getElementById("add-img").src =
     "./img/icons8-ajouter-une-image-90.png";
   document.getElementById("floatingInputName").value = "";
@@ -63,6 +65,7 @@ function eraseValueFormConcours() {
   document.getElementById("floatingInputDateEnd").value = "";
   document.getElementById("controlTextareaDescription").value = "";
   gameIdDef = -1;
+  gameImgIdDef = -1;
   fileImgAdd = undefined;
   imgSrc = "";
 }
@@ -86,17 +89,21 @@ function activeBtConcours() {
 }
 
 function addRowConcours(concours) {
+  let validate = validateGame(concours);
   return (
     '<tr id="concours_' +
     concours.id +
     '">' +
+    '<td class="icon-validate text-center">' +
+    validate +
+    "</td>" +
     "<td>" +
     concours.name +
     "</td>" +
-    '<td class="text-center">' +
+    '<td class="text-center display-column-pc">' +
     displayDate(concours.dateStart) +
     "</td>" +
-    '<td class="text-center">' +
+    '<td class="text-center display-column-pc">' +
     displayDate(concours.dateEnd) +
     "</td>" +
     '<td class="text-center">' +
@@ -121,8 +128,7 @@ function addEventAllConcours() {
         let data = gameTab[myIndex];
         gameIdDef = data.id;
         addGame(
-          data.name, 
-          data.image, 
+          data.name,
           data.date, 
           data.dateStart, 
           data.dateEnd, 
@@ -146,7 +152,10 @@ function addEventAllConcours() {
         let data = gameTab[myIndex];
         document.getElementById("id-concour").value = data.id;
         document.getElementById("checkDisplay").checked = (data.visible == 1);
-        document.getElementById("add-img").src = data.image;
+        let posImgGame = recupIdImg(recupIdImageIdGame(data.id));
+        if(posImgGame[0] != -1) {
+          document.getElementById("add-img").src = imagTab[posImgGame[0]][posImgGame[1]].src;
+        }
         document.getElementById("floatingInputName").value = data.name;
         document.getElementById("floatingInputDateStart").value =
           data.dateStart;
@@ -196,6 +205,20 @@ function loadlistConcours() {
         element
       );
     });
+    sortTable("table-info-concours", "game-concours-validate", -1);
+    document
+      .getElementById("list_competition")
+      .querySelectorAll("tr")
+      .forEach((element) => {
+        let elementTd = element.querySelector(".icon-validate");
+        let validate = parseInt(elementTd.innerHTML);
+        let idGame = parseInt(element.id.split('_')[1]);
+        let myIndex = recupId(gameTab, idGame);
+        if(myIndex != -1) {
+            elementTd.innerHTML = addPopoverInfo(gameTab[myIndex], validate);
+        }
+      });
+      activePopover();
     addEventAllConcours();
   } else {
     document.getElementById("list_competition").innerHTML =
