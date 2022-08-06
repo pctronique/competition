@@ -82,10 +82,10 @@ function validateInformationGame(game) {
   let validate = validateGame(game);
   let img = document.querySelector('.img_validate');
   if(validate == 1) {
-    img.src = "./../img/icons8-blue-square-96.svg";
+    img.src = "./img/icons8-blue-square-96.svg";
     img.alt = "n\'a pas commencé";
   } else if(validate == 2) {
-    img.src = "./../img/icons8-green-square-96.svg";
+    img.src = "./img/icons8-green-square-96.svg";
     img.alt = "en cours";
   }
 }

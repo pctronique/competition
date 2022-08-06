@@ -5,11 +5,11 @@ function displayCard(game) {
     imgSrc = imagTab[posImgGame[0]][posImgGame[1]].src;
   }
   let validate = validateGame(game);
-  let img = '<img class="img_validate" src="./../img/icons8-red-square-96.svg" alt="fini" />';
+  let img = '<img class="img_validate" src="./img/icons8-red-square-96.svg" alt="fini" />';
   if(validate == 1) {
-    img = '<img class="img_validate" src="./../img/icons8-blue-square-96.svg" alt="n\'a pas commencé" />';
+    img = '<img class="img_validate" src="./img/icons8-blue-square-96.svg" alt="n\'a pas commencé" />';
   } else if(validate == 2) {
-    img = '<img class="img_validate" src="./../img/icons8-green-square-96.svg" alt="en cours" />';
+    img = '<img class="img_validate" src="./img/icons8-green-square-96.svg" alt="en cours" />';
   }
   let descMain =
     "Début : " +
