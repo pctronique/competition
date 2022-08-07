@@ -1,10 +1,17 @@
 function addRowUserGameInfo(gameUser) {
+  let blur = "";
+  let myIndexGame = recupId(gameTab, gameUser.gameId);
+  let game = gameTab[myIndexGame];
+  let validate = validateGame(game);
+  if(validate == 2 || validate == 1) {
+    blur = ' class="blur-no-yes blur"';
+  }
   let myIndex = recupId(utilisateurTab, gameUser.userId);
   let user = utilisateurTab[myIndex];
   return (
     '<tr id="concours_' +
     gameUser.id +
-    '">' +
+    '" '+blur+'>' +
     "<td class=\"text-center icon-cup\">" +
     "</td>" +
     "<td class=\"text-center\">" +
@@ -23,6 +30,15 @@ function addParticipationConcours(idGame) {
   location.reload();
 }
 
+function KeyPress(e) {
+  var evtobj = window.event? event : e
+  if ((evtobj.keyCode == 66 || evtobj.keyCode == 98) && evtobj.ctrlKey) {
+    document.querySelectorAll(".blur-no-yes").forEach(element => {
+      element.classList.toggle("blur");
+    });
+  }
+}
+
 function addBtParticipationConcoursScore(id) {
   document.getElementById("bt-participation-concours").innerHTML = "";
   if ("id" in sessionTab) {
@@ -30,7 +46,7 @@ function addBtParticipationConcoursScore(id) {
       let myIndex = recupId(gameTab, parseInt(id));
       if(myIndex != -1) {
         let game = gameTab[myIndex];
-        if(dateToInt(dateNowStr()) < dateToInt(game.dateEnd)) {
+        if(dateToInt(dateNowStr()) <= dateToInt(game.dateEnd)) {
           document.getElementById("bt-participation-concours").innerHTML = '<button id="participer" type="button" class="btn btn-dark m-1 mb-5">Participer</button>';
           document.getElementById('participer').addEventListener("click", function (e) {
             addParticipationConcours(parseInt(id));
@@ -39,6 +55,7 @@ function addBtParticipationConcoursScore(id) {
       }
     }
   }
+  document.onkeydown = KeyPress;
 }
 
 function loadlistScoreInfo(id) {
@@ -102,6 +119,7 @@ function information() {
   if (myIndex != -1 && visible == 1) {
     fetch_txt("./templates/information.html").then(function (response) {
       document.getElementById("def_body").innerHTML = response;
+      document.getElementById("head-title").innerHTML = "Compétition game - concours - "+gameTab[myIndex].name;
       document.getElementById("score-game-title").innerHTML =
         gameTab[myIndex].name;
       document.getElementById("score-game-desc").innerHTML =
@@ -132,7 +150,6 @@ function information() {
       addBtParticipationConcoursScore(indexPg);
     });
   } else {
-    document.getElementById("def_body").innerHTML =
-      "<div>Impossible de trouver la page.</div>";
+    window.location.href = "./";
   }
 }

@@ -102,7 +102,8 @@ html {
   
   .tree {
     position: absolute;
-    width: 128px
+    width: 128px;
+    z-index: 1;
   }
   
   @keyframes tree-animation {
@@ -168,13 +169,14 @@ html {
   }
   
   .road {
-    margin-top: 33vh;
+    margin-top: 29vh;
     width: 100%;
     position: relative;
-    min-height: 30vh;
+    min-height: 29vh;
     background-color: #404040;
     border-top: 4px solid #8f8f8f;
-    border-bottom: 4px solid #8f8f8f
+    border-bottom: 4px solid #8f8f8f;
+    z-index: 0;
   }
   
   .road::before,
