@@ -154,6 +154,9 @@ function information() {
         gameTab[myIndex].name;
       document.getElementById("score-game-desc").innerHTML =
         gameTab[myIndex].description;
+      if(("id" in sessionTab) && recupIdUserGame(sessionTab.id, gameTab[myIndex].id) != -1) {
+        document.querySelector(".img_participation").classList.toggle("img_participation_none");
+      }
       let imgSrc = "";
       let posImgGame = recupIdImg(recupIdImageIdGame(gameTab[myIndex].id));
       if(posImgGame[0] != -1) {

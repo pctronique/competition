@@ -184,6 +184,14 @@ a {
   filter: blur(15px);
 }
 
+.img_participation {
+  margin-left: 53px;
+}
+
+.img_participation_none {
+  display: none;
+}
+
 /**********************/
 /** version < 991px ***/
 /**********************/
