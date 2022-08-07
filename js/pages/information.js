@@ -1,3 +1,18 @@
+/**
+ * Pour retrouver le tr de la ligne du tableau.
+ * @param {*} element 
+ * @returns 
+ */
+ function findElementTr(element) {
+  if(element === undefined) {
+      return undefined;
+  }
+  if(element.localName === "tr") {
+      return element;
+  }
+  return findElementTr(element.parentNode);
+}
+
 function addRowUserGameInfo(gameUser) {
   let blur = "";
   let myIndexGame = recupId(gameTab, gameUser.gameId);
@@ -41,6 +56,21 @@ function KeyPress(e) {
 
 function addBtParticipationConcoursScore(id) {
   document.getElementById("bt-participation-concours").innerHTML = "";
+  document.querySelectorAll(".blur-no-yes").forEach(element => {
+    element.addEventListener('mouseenter', function (e) {
+      let elementTr = findElementTr(e.target);
+      if(elementTr != undefined) {
+        elementTr.classList.toggle("blur");
+      }
+    });
+
+    element.addEventListener('mouseleave', function (e) {
+      let elementTr = findElementTr(e.target);
+      if(elementTr != undefined) {
+        elementTr.classList.toggle("blur");
+      }
+    });
+  });
   if ("id" in sessionTab) {
     if(findGameAndUser(id)) {
       let myIndex = recupId(gameTab, parseInt(id));
