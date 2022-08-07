@@ -20,14 +20,36 @@ body {
   min-width: 320px;
 }
 
-#def_body {
+#dropdown-menu-main {
+  margin-right: 10px;
+}
+
+#all-body {
   position: relative;
   z-index: 2;
-  min-height: 92vh;
-  max-height: 92vh;
-  overflow-y: auto;
+  height: 100vh;
+  overflow: none;
   background-color: #ffffff8c;
-  padding-bottom: 40px;
+}
+
+#body_main {
+  height: 92vh;
+  overflow-y: auto;
+}
+
+#body_footer {
+  position: relative;
+  min-height: 87vh;
+}
+
+#def_body {
+  padding-bottom: 100px;
+}
+
+#def-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 #img-menu {
@@ -37,7 +59,7 @@ body {
 h1 {
   color: white;
   text-decoration: none;
-  margin-left: -60px;
+  margin-left: -21px;
 }
 
 a {
@@ -145,13 +167,30 @@ a {
   text-shadow: #808080a6 15px 15px 15px;
 }
 
+.info-game-img {
+  display: flex;
+  justify-content: center;
+}
+
+.info-game-img img {
+  width: 70%;
+}
+
+#info-game {
+  width: 70%;
+}
+
+.blur {
+  filter: blur(15px);
+}
+
 /**********************/
 /** version < 991px ***/
 /**********************/
 @media screen and (min-width: 667px) {
-  #score-game-img {
+  /*#score-game-img {
     width: 100%;
-  }
+  }*/
 
 }
 
@@ -167,6 +206,14 @@ a {
     max-height: 200px;
     overflow: none;
     overflow-y: auto;
+  }
+
+  .info-game-img img {
+    width: 100%;
+  }
+  
+  #info-game {
+    width: 100%;
   }
 }
 

@@ -46,3 +46,27 @@ ajouter une image dans le telechargement
 function img_add() {
   document.getElementById("imgToUpload").click();
 }
+
+function compressImage(imgToCompress, resizingFactor) {
+  // resizing the image
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  
+  const originalWidth = imgToCompress.width;
+  const originalHeight = imgToCompress.height;
+  
+  const canvasWidth = originalWidth * resizingFactor;
+  const canvasHeight = originalHeight * resizingFactor;
+  
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+  
+  context.drawImage(
+    imgToCompress,
+    0,
+    0,
+    originalWidth * resizingFactor,
+    originalHeight * resizingFactor
+  );
+  return canvas.toDataURL();
+}

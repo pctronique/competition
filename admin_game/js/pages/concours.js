@@ -1,3 +1,23 @@
+function modifImgSize(id, idGame, src) {
+  displayModal("modalLoading");
+  var img1 = new Image();
+  img1.src = src;
+  img1.onload = function() {
+      // access image size here 
+      let srcImg = this;
+      if(this.width > 500) {
+        let resizingFactor = 500.0 / this.width;
+        srcImg = compressImage(this, resizingFactor);
+      }
+      gameImgIdDef = id;
+      addImg(idGame, srcImg);
+      gameImgIdDef = -1;
+      saveLocalSGBD();
+      displayModal("modalLoading");
+  };
+  
+}
+
 function validationConcours(e) {
   // pour ne pas prendre l'adresse de l'action du formulaire.
   e.preventDefault();
@@ -41,7 +61,8 @@ function validationConcours(e) {
         (visible.checked ? 1 : 0)
       ).id;
       if(imgSrc != "") {
-        addImg(idGame, imgSrc);
+        let idImg = addImg(idGame, '').id;
+        modifImgSize(idImg, idGame, imgSrc);
       }
       saveLocalSGBD();
       loadlistConcours();
@@ -222,7 +243,7 @@ function loadlistConcours() {
     addEventAllConcours();
   } else {
     document.getElementById("list_competition").innerHTML =
-      "<tr>" + '<td colspan="6">Il n\'y a pas de catégorie.</td>' + "</tr>";
+      "<tr>" + '<td colspan="7">Il n\'y a pas de catégorie.</td>' + "</tr>";
   }
 }
 

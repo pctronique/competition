@@ -74,7 +74,7 @@ function validateGame(game) {
     let validate = 1;
     if (
       dateToInt(dateNowStr(dateNowStr())) >= dateToInt(game.dateStart) &&
-      dateToInt(dateNowStr()) < dateToInt(game.dateEnd)
+      dateToInt(dateNowStr()) <= dateToInt(game.dateEnd)
     ) {
       validate = 2;
     } else if (dateToInt(dateNowStr()) >= dateToInt(game.dateEnd)) {

@@ -146,7 +146,7 @@ function loadlistSelectScore() {
   gameTab.forEach((element) => {
     if (
       findGameAndUser(element.id) &&
-      dateToInt(dateNowStr()) < dateToInt(element.dateEnd) &&
+      dateToInt(dateNowStr()) <= dateToInt(element.dateEnd) &&
       element.visible == 1
     ) {
       nbDisplay++;
