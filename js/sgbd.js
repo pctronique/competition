@@ -104,6 +104,15 @@ function deleteGame(id) {
   }
 }
 
+function recupIdUserGame(idUser, idGame) {
+  for (let index = 0; index < gameUserTab.length; index++) {
+    if (gameUserTab[index].userId == idUser && gameUserTab[index].gameId == idGame) {
+      return gameUserTab[index].id;
+    }
+  }
+  return -1;
+}
+
 function recupId(dataTab, id) {
   for (let index = 0; index < dataTab.length; index++) {
     if (dataTab[index].id == id) {

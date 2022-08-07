@@ -11,6 +11,10 @@ function displayCard(game) {
   } else if(validate == 2) {
     img = '<img class="img_validate" src="./img/icons8-green-square-96.svg" alt="en cours" />';
   }
+  let participation = "";
+  if(("id" in sessionTab) && recupIdUserGame(sessionTab.id, game.id) != -1) {
+    participation = '<img class="img_validate img_participation" src="./img/table-games.svg" alt="vous participez au jeu." />';
+  }
   let descMain =
     "Début : " +
     displayDate(game.dateStart) +
@@ -33,6 +37,7 @@ function displayCard(game) {
     "</h5>" +
     '<div class="descrip-game-acc">'+
     img+
+    participation +
     '<p class="card-text date-game-acc">' +
     descMain +
     "</p>" +
