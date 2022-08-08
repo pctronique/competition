@@ -1,3 +1,14 @@
+function configDefStart() {
+  if (configTab == undefined) {
+    configDefSite();
+    console.log(configTab);
+  }
+}
+
+function tabIsBlur() {
+  return configTab.blur == 1;
+}
+
 function sortTable1(idTabe, idth, f) {
   // fait a partir du site : https://www.pierre-giraud.com/trier-tableau-javascript/
   let compare = function (ids, asc) {

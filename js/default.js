@@ -1,3 +1,4 @@
+configDefStart();
 let indexPg = urlGetName("ind");
 document.getElementById("def_menu").innerHTML = "";
 document.getElementById("def_body").innerHTML = "";

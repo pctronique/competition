@@ -8,11 +8,18 @@ let roleTab = [];
 let gameTab = [];
 let gameUserTab = [];
 let imagTab = [];
+let configTab = undefined;
 let utilisateurIdDef = -1;
 let roleIdDef = -1;
 let gameIdDef = -1;
 let gameUserIdDef = -1;
 let gameImgIdDef = -1;
+
+function configDefSite() {
+  configTab = {
+    blur: 0
+  };
+}
 
 function role(id, name) {
   return {
@@ -256,6 +263,7 @@ function addGameUser(gameId, userId, score) {
 }
 
 function saveLocalSGBD() {
+  localStorage.setItem("pctr_comp_config", JSON.stringify(configTab));
   /*let valuesRole = {
         "number" : roleAutoIncrement,
         "listData" : roleTab,
@@ -285,6 +293,7 @@ function saveLocalSGBD() {
 }
 
 function loadLocalSGBD() {
+  configTab = JSON.parse(localStorage.getItem("pctr_comp_config"));
   /*var valuesRole = localStorage.getItem('pctr_comp_role');
     if(valuesRole !== undefined && valuesRole != "") {
         let values = JSON.parse(valuesRole);
@@ -330,6 +339,7 @@ function loadLocalSGBD() {
 function saveFileSGBD() {
   let name_file = "sgbd_comppetition_" + Date.now() + ".json";
   let values = {
+    configTab : configTab,
     //"roleAutoIncrement" : roleAutoIncrement,
     utilisateurAutoIncrement: utilisateurAutoIncrement,
     gameAutoIncrement: gameAutoIncrement,
@@ -354,6 +364,7 @@ function saveFileSGBD() {
 
 function loadJSON_SGBD(jsonData) {
   var result = JSON.parse(jsonData);
+  configTab = result.configTab,
   //roleAutoIncrement = result.roleAutoIncrement;
   utilisateurAutoIncrement = result.utilisateurAutoIncrement;
   gameAutoIncrement = result.gameAutoIncrement;
@@ -399,6 +410,8 @@ function loadDefJSON_SGBD(jsonData) {
 }
 
 function del_SGBD() {
+  localStorage.removeItem('pctr_comp_config');
+  localStorage.removeItem('pctr_comp_img');
   localStorage.removeItem('pctr_comp_role');
   localStorage.removeItem('pctr_comp_user');
   localStorage.removeItem('pctr_comp_game');
