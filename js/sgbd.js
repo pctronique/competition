@@ -410,6 +410,8 @@ function loadDefJSON_SGBD(jsonData) {
 }
 
 function del_SGBD() {
+  localStorage.removeItem('pctr_comp_config');
+  localStorage.removeItem('pctr_comp_img');
   localStorage.removeItem('pctr_comp_role');
   localStorage.removeItem('pctr_comp_user');
   localStorage.removeItem('pctr_comp_game');

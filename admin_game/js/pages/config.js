@@ -6,6 +6,7 @@ function addBtConfig() {
     document.getElementById("valider").addEventListener("click", function(e) {
         configTab.blur = document.getElementById("checkBlur").checked ? 1 : 0;
         saveLocalSGBD();
+        alert("La configuration a été sauvegardé.");
     });
     document.getElementById("annuler").addEventListener("click", function(e) {
         loadConfig();
