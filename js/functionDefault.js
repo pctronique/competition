@@ -1,3 +1,7 @@
+if (!("blur" in configTab)) {
+  configDefSite();
+}
+
 function sortTable1(idTabe, idth, f) {
   // fait a partir du site : https://www.pierre-giraud.com/trier-tableau-javascript/
   let compare = function (ids, asc) {

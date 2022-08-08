@@ -13,7 +13,7 @@ function displayCard(game) {
   }
   let participation = "";
   if(("id" in sessionTab) && recupIdUserGame(sessionTab.id, game.id) != -1) {
-    participation = '<img class="img_validate img_participation" src="./img/table-games.svg" alt="vous participez au jeu." />';
+    participation = '<img class="img_validate img_participation" src="./img/gaming.svg" alt="vous participez au jeu." />';
   }
   let descMain =
     "Début : " +

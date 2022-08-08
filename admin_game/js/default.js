@@ -1,6 +1,9 @@
 let indexPg = urlGetName("ind");
 document.getElementById("def_menu").innerHTML = "";
 document.getElementById("def_body").innerHTML = "";
+if (!("blur" in configTab)) {
+  configDefSite();
+}
 if (indexPg != undefined && indexPg.trim() != "") {
   if (indexPg == "score") {
     document.getElementById("head-title").innerHTML = "Compétition game - admin - score";
@@ -18,6 +21,10 @@ if (indexPg != undefined && indexPg.trim() != "") {
     document.getElementById("head-title").innerHTML = "Compétition game - admin - utilisateurs";
     menu();
     users();
+  } else if (indexPg == "config") {
+    document.getElementById("head-title").innerHTML = "Compétition game - admin - configuration";
+    menu();
+    config();
   } else if (indexPg == "sgbd") {
     document.getElementById("head-title").innerHTML = "Compétition game - admin - sgbd";
     menu();

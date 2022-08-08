@@ -48,6 +48,7 @@ table select {
 }
 
 .card-a-div {
+  display: flex;
   color: black;
 }
 
