@@ -1,5 +1,12 @@
-if (!("blur" in configTab)) {
-  configDefSite();
+function configDefStart() {
+  if (configTab == undefined) {
+    configDefSite();
+    console.log(configTab);
+  }
+}
+
+function tabIsBlur() {
+  return configTab.blur == 1;
 }
 
 function sortTable1(idTabe, idth, f) {

@@ -1,9 +1,7 @@
+configDefStart();
 let indexPg = urlGetName("ind");
 document.getElementById("def_menu").innerHTML = "";
 document.getElementById("def_body").innerHTML = "";
-if (!("blur" in configTab)) {
-  configDefSite();
-}
 if (indexPg != undefined && indexPg.trim() != "") {
   if (indexPg == "score") {
     document.getElementById("head-title").innerHTML = "Compétition game - admin - score";

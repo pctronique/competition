@@ -49,7 +49,9 @@ function KeyPress(e) {
   var evtobj = window.event? event : e
   if ((evtobj.keyCode == 66 || evtobj.keyCode == 98) && evtobj.ctrlKey) {
     document.querySelectorAll(".blur-no-yes").forEach(element => {
-      element.classList.toggle("blur");
+      if(tabIsBlur()) {
+        element.classList.toggle("blur");
+      }
     });
   }
 }
@@ -60,14 +62,18 @@ function addBtParticipationConcoursScore(id) {
     element.addEventListener('mouseenter', function (e) {
       let elementTr = findElementTr(e.target);
       if(elementTr != undefined) {
-        elementTr.classList.toggle("blur");
+        if(tabIsBlur()) {
+          elementTr.classList.toggle("blur");
+        }
       }
     });
 
     element.addEventListener('mouseleave', function (e) {
       let elementTr = findElementTr(e.target);
       if(elementTr != undefined) {
-        elementTr.classList.toggle("blur");
+        if(tabIsBlur()) {
+          elementTr.classList.toggle("blur");
+        }
       }
     });
   });
